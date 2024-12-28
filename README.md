@@ -10,6 +10,10 @@ In SSMS, in order to connect to our backend in the future, right click the `Secu
 
 ![Example of creating a new login through SSMS](./SQL_New_Login.PNG)
 
+After creating the new login, right click your server's database and go to `Properties`, and then `Security`. Make sure that you have `SQL Server and Windows Authentication mode` selected. If it is not turned on, after you select it, you will need to restart your SQL Server. To do this, go into your Explorer tab and search up `Services`. Open up Services, and scroll down until you find `SQL Server (SQLEXPRESS)`. Right click it and hit **Restart**.
+
+![How to change your SQL Server properties](./SQL_Server_Properties.png) ![How to restart SQL Server](./SQL_Restart.png)
+
 In the `SQL Scripts` folder, you will find two scripts. One is to create the table of materials, and the other is to populate it with initial data. Run `CreateTable.sql` in your chosen database. **Please note that the CreateTable.sql file already contains a default database name called CodeChallengeData. If you choose a different database name, ensure that you change the database name so it can run correctly in the file.** After creating the table, then run `PopulateTable.sql` to populate it with the initial data.
 
 ## Backend Setup
@@ -17,7 +21,7 @@ Ensure that you have [Node.js](https://nodejs.org/en/download) installed. In ord
 
 ![Example of SSMS connection login](./SQL_Connect.PNG)
 
-In this example, my `DB_SERVER` would be `SOULAI-PC`. You only need the name before the `\` for the server name. The database port is usually defaulted to `1433`, but to double-check, you can open up **SQL Server Configuration Manager**. Ensure that **TCP/ICP** is enabled, then right-click `Properties` and go over to the `IP Addresses` tab. Scroll all the way down to **IPAII**, and there you should see the port number as to which you should set up in your `.env` file. 
+In this example, my `DB_SERVER` would be `SOULAI-PC`. You only need the name before the `\` for the server name. The database port is usually defaulted to `1433`, but to double-check, you can open up **SQL Server Configuration Manager**. Ensure that **TCP/ICP** is enabled, then right-click `Properties` and go over to the `IP Addresses` tab. Scroll all the way down to **IPAII**, and there you should see the port number as to which you should set up in your `.env` file.  If your port is empty for the IPAII, set it to 1433, and restart SQL Server using the same steps from earlier.
 
 **Please note that in `server.js`, the default `instancename` is SQLEXPRESS. If you did not install MS SQL Express, you may need to change this to the correct instancename of your SQL version. This can be found after your DB_SERVER after the `\`**
 
