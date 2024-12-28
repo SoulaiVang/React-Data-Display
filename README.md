@@ -4,7 +4,7 @@ A simple full-stack application with CRUD functionalities. This project utilizes
 # Installation Instructions
 
 ## Database Setup
-Please ensure that you have [Microsoft SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) downloaded along with [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16). It should offer to download SSMS when you also install MS SQL as well. For this project, I utilized **Microsoft SQL Express**, which `server.js` is specifically configured to. Once downloaded, open up SSMS, connect, and create a new database name.
+Please ensure that you have [Microsoft SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) downloaded along with [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16). It should offer to download SSMS when you also install MS SQL as well. For this project, I utilized **Microsoft SQL Express**, which `server.js` is specifically configured to. Once downloaded, open up SSMS, connect, and create a new database name. If you get an error about connecting by 'an authority that is not trusted', click the checkbox **Trust server certificate** in options.
 
 In SSMS, in order to connect to our backend in the future, right click the `Security` folder and create a new login. Choose a login name, and select `SQL Server authentication`. De-select `Enforce password policy` and choose a password. Once finished, go to `User Mapping` before finish creating the new login, select your database, and make sure that you check `db_owner` and then hit **OK.**
 
