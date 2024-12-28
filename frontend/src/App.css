@@ -1,0 +1,114 @@
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.search-bar input {
+  padding: 0.75rem;
+  width: 40rem;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.buttons-container button {
+  height: 3rem;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 0.1rem solid #afaeae;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+th {
+  background-color: #ffffff;
+  color: black;
+}
+
+tr {
+  height: 3rem;
+}
+
+.materials-table {
+  width: 100rem;
+  overflow-y: auto;
+}
+
+.materials-table-row, .highlight {
+  cursor: pointer;
+}
+
+.highlight {
+  background-color: slategray;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  max-width: 50rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: rgb(70, 67, 67);
+  border-radius: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.form-container h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+}
+
+.form-container label {
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+
+.form-container input {
+  width: auto;
+  min-width: 20rem;
+  padding: 0.8rem;
+  margin-left: 2rem;
+  border: 0.1rem solid #cccccc;
+  border-radius: 0.5rem;
+  float: right;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
