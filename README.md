@@ -10,7 +10,7 @@ In SSMS, in order to connect to our backend in the future, right click the `Secu
 
 ![Example of creating a new login through SSMS](./SQL_New_Login.PNG)
 
-After creating the new login, right click your server's database and go to `Properties`, and then `Security`. Make sure that you have `SQL Server and Windows Authentication mode` selected. If it is not turned on, after you select it, you will need to restart your SQL Server. To do this, go into your Explorer tab and search up `Services`. Open up Services, and scroll down until you find `SQL Server (SQLEXPRESS)`. Right click it and hit **Restart**.
+After creating the new login, right click your server's database and go to `Properties`, and then `Security`. Make sure that you have `SQL Server and Windows Authentication mode` selected. If it is not turned on, after you select it, you will need to restart your SQL Server. To do this, go into your Explorer tab and search up `Services`. Open up Services, and scroll down until you find `SQL Server (SQLEXPRESS)` (it may be slightly different if you did not install SQL Express specifically). Right click it and hit **Restart**.
 
 ![How to change your SQL Server properties](./SQL_Server_Properties.png) ![How to restart SQL Server](./SQL_Restart.png)
 
