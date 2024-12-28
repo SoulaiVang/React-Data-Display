@@ -4,7 +4,7 @@ A simple full-stack application with CRUD functionalities. This project utilizes
 # Installation Instructions
 
 ## Database Setup
-Please ensure that you have [Microsoft SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) downloaded along with [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16). It should offer to download SSMS when you also install MS SQL as well. For this project, I utilized Microsoft SQL Express. Once downloaded, open up SSMS, connect, and create a new database name.
+Please ensure that you have [Microsoft SQL](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) downloaded along with [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16). It should offer to download SSMS when you also install MS SQL as well. For this project, I utilized **Microsoft SQL Express**, which `server.js` is specifically configured to. Once downloaded, open up SSMS, connect, and create a new database name.
 
 In SSMS, in order to connect to our backend in the future, right click the `Security` folder and create a new login. Choose a login name, and select `SQL Server authentication`. De-select `Enforce password policy` and choose a password. Once finished, go to `User Mapping` before finish creating the new login, select your database, and make sure that you check `db_owner` and then hit **OK.**
 
@@ -17,10 +17,16 @@ Ensure that you have [Node.js](https://nodejs.org/en/download) installed. In ord
 
 ![Example of SSMS connection login](./SQL_Connect.PNG)
 
-In this example, my `DB_SERVER` would be `SOULAI-PC`. You only need the name before the `\` for the server name. The database port is usually defaulted to `1433`, but to double-check, you can open up **SQL Server Configuration Manager**. Ensure that **TCP/ICP** is enabled, then right-click `Properties` and go over to the `IP Addresses` tab. Scroll all the way down to **IPAII**, and there you should see the port number as to which you should set up in your `.env` file. Once you have all of your credentials made in your `.env` file, make sure that you are currently in the `\backend` directory and run `npm install`. This will install all necessary packages. Once everything is done installing, then run the command `npm start` to start up the backend server.
+In this example, my `DB_SERVER` would be `SOULAI-PC`. You only need the name before the `\` for the server name. The database port is usually defaulted to `1433`, but to double-check, you can open up **SQL Server Configuration Manager**. Ensure that **TCP/ICP** is enabled, then right-click `Properties` and go over to the `IP Addresses` tab. Scroll all the way down to **IPAII**, and there you should see the port number as to which you should set up in your `.env` file. 
+
+**Please note that in `server.js`, the default `instancename` is SQLEXPRESS. If you did not install MS SQL Express, you may need to change this to the correct instancename of your SQL version. This can be found after your DB_SERVER after the `\`**
+
+Once you have all of your credentials made in your `.env` file, make sure that you are currently in the `\backend` directory and run `npm install`. This will install all necessary packages. Once everything is done installing, then run the command `npm start` to start up the backend server.
 
 ## Frontend Setup
-Open up a second terminal and change your directory the `\frontend` directory. Run `npm install` once more to install all frontend packages and dependencies. Once everything is installed, and your backend is also running, then type `npm run dev`. This should open up the frontend, and if your backend is connected successfully, you should see a table displaying the initial data that you created in SSMS. Enjoy expereicing simple CRUD functionalities!
+Open up a second terminal and change your directory the `\frontend` directory. Run `npm install` once more to install all frontend packages and dependencies. Once everything is installed, and your backend is also running, then type `npm run dev`. This should open up the frontend, and if your backend is connected successfully, you should see a table displaying the initial data that you created in SSMS. Enjoy experiencing simple CRUD functionalities!
+
+![Screenshot of the final project when it is loaded up correctly](./Table.PNG)
 
 # Overview of Design Decisions & Tech Stack
 For this project, the main framework that I utilized was React along with TypeScript for my frontend, while utilizing plain JavaScript and MS SQL for my backend. I chose these languages because they were the most familiar to me, along with enjoying React for making code more organized through its component-based framework logic and powerful use of states, as seen in `App.jsx`, where multiple states are maintained and kept track of to multiple different web components.
