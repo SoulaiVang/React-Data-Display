@@ -1,10 +1,5 @@
-interface MaterialsTableProps {
-    data: Record<string, any>[];
-    showId: boolean; // Show ID state passed from parent
-    selectedRowIndex: number | null;
-    onRowClick: (index: number) => void;
-}
-  
+import { MaterialsTableProps } from "../interfaces/MaterialsTableProps";
+
 const MaterialsTable = ({ data, showId, selectedRowIndex, onRowClick }: MaterialsTableProps) => {
   if (!data || data.length === 0) {
     return <p>No data available</p>;

@@ -1,14 +1,5 @@
 import SearchBar from "./SearchBar";
-
-interface HeaderProps {
-    showId: boolean;
-    searchTerm: string;
-    onSearchChange: (search: string) => void;
-    toggleId: () => void;
-    onAdd: () => void;
-    onEdit: () => void;
-    onDelete: () => void;
-}
+import { HeaderProps } from "../interfaces/HeaderProps";
 
 const Header = ({ showId, searchTerm, onSearchChange, toggleId, onAdd, onEdit, onDelete }: HeaderProps) => {
   return (

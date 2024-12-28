@@ -4,12 +4,14 @@ import Header from './components/Header';
 import MaterialsTable from './components/MaterialsTable';
 import AddForm from './components/AddForm';
 import EditForm from './components/EditForm';
+import { MetadataField } from './interfaces/MetadataField';
 
 function App() {
-  const [materials, setMaterials] = useState<Record<string, any>[]>([]); // State for fetching the materials data
-  const [filteredMaterials, setFilteredMaterials] = useState<Record<string, any>[]>([]); // State for filtered materials data
-  const [searchTerm, setSearchTerm] = useState(''); // State for the search term
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm); // State for the debounced search term
+  const [materials, setMaterials] = useState<Record<string, any>[]>([]);
+  const [metadata, setMetadata] = useState<MetadataField[]>([]);
+  const [filteredMaterials, setFilteredMaterials] = useState<Record<string, any>[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [showId, setShowId] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedRowIndex, setSelectedRowIndex] = useState<number | null>(null);
@@ -134,6 +136,21 @@ function App() {
     fetchMaterials();
   }, []);
 
+  // Fetch metadata data schema from backend, used for making dynamic forms
+  useEffect(() => {
+    const fetchMetadata = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/Fields/Materials');
+        const data = await response.json();
+        setMetadata(data);
+      } catch (error) {
+        console.error('Error fetching metadata:', error);
+      }
+    };
+
+    fetchMetadata();
+  }, []);
+
   // To clear highlighted row index when clicking anything outside the table
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -188,7 +205,7 @@ function App() {
       />
       {showAddForm && (
         <AddForm 
-          data={materials} 
+          metadata={metadata} 
           onSubmit={handleAddSubmit} 
           onCancel={() => setShowAddForm(false)}
         />
@@ -196,6 +213,7 @@ function App() {
       {isEditing && editData && (
         <EditForm
             data={editData}
+            metadata={metadata}
             onSubmit={handleEditSubmit}
             onCancel={() => {
                 setIsEditing(false);

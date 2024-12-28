@@ -1,7 +1,4 @@
-interface SearchBarProps {
-    searchTerm: string;
-    onSearchChange: (search: string) => void;
-}
+import { SearchBarProps } from "../interfaces/SearchBarProps";
 
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
 return (

@@ -87,6 +87,7 @@ tr {
 
 .form-row {
   display: flex;
+  align-items: center;
 }
 
 .form-container label {
@@ -94,7 +95,7 @@ tr {
   margin: 0.5rem;
   font-weight: bold;
   flex: 1;
-  text-align: left;
+  text-align: right;
 }
 
 .form-container input {
@@ -104,11 +105,15 @@ tr {
   margin-left: 2rem;
   border: 0.1rem solid #cccccc;
   border-radius: 0.5rem;
-  float: right;
 }
 
 .form-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 1.5rem;
+}
+
+.form-container span {
+  display: inline-block;
+  margin-top: 1rem;
 }

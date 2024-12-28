@@ -41,6 +41,26 @@ app.get('/Materials', async(req, res) => {
     }
 })
 
+// To get metadata about database schema to allow for dynamic form creation in the frontend
+app.get('/Fields/:tableName', async (req, res) => {
+    const { tableName } = req.params;
+
+    if (!tableName) {
+        return res.status(400).json({ error: "Table name is required." });
+    }
+
+    try {
+        const pool = await sql.connect(config);
+        const result = await pool.request().input('TableName', sql.NVarChar, tableName)
+            .query(`SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @TableName AND COLUMN_NAME != 'Id';`);
+
+        return res.status(200).json(result.recordset);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Error fetching table schema." });
+    }
+});
+
 // POST endpoint to add a new material
 app.post('/Materials', async (req, res) => {
     try {
@@ -55,11 +75,7 @@ app.post('/Materials', async (req, res) => {
         const columnNames = columns.join(', ');
         const valuePlaceholders = columns.map((_, index) => `@value${index}`).join(', ');
 
-        const query = `
-            INSERT INTO Materials (${columnNames})
-            OUTPUT INSERTED.*   -- This will return the inserted row
-            VALUES (${valuePlaceholders});
-        `;
+        const query = `INSERT INTO Materials (${columnNames}) OUTPUT INSERTED.* VALUES (${valuePlaceholders});`;
 
         const pool = await sql.connect(config);
         const request = pool.request();
@@ -99,11 +115,7 @@ app.put('/Materials/:id', async (req, res) => {
         const setClause = columns.map((col, index) => `${col} = @value${index}`).join(', ');
 
         // Construct the SQL query
-        const query = `
-            UPDATE Materials
-            SET ${setClause}
-            WHERE Id = @id;
-        `;
+        const query = `UPDATE Materials SET ${setClause} WHERE Id = @id;`;
 
         const pool = await sql.connect(config);
         const request = pool.request();
@@ -139,10 +151,7 @@ app.delete('/Materials/:id', async (req, res) => {
         }
 
         const pool = await sql.connect(config);
-        const result = await pool
-            .request()
-            .input('id', sql.Int, parseInt(id, 10))
-            .query('DELETE FROM Materials WHERE Id = @id');
+        const result = await pool.request().input('id', sql.Int, parseInt(id, 10)).query('DELETE FROM Materials WHERE Id = @id');
 
         if (result.rowsAffected[0] === 0) {
             return res.status(404).json({ error: "Material not found." });
